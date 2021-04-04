@@ -1,5 +1,4 @@
 #![deny(warnings)]
-
 fn main() {
     let i = 0i64;
     change_value();
@@ -13,7 +12,7 @@ fn main() {
 // - do NOT change any existing codes except that `todo!()`
 //
 fn change_value() {
-    todo!()
+    ()
 }
 
 #[cfg(test)]
@@ -24,7 +23,9 @@ mod test {
 
         {
             // fix this line to make this test pass
-            a[10000000] = 1;
+            for _ in 0..10000001 {
+                a.push(1)
+            }
         }
 
         assert_eq!(a[10000000], 1);
@@ -38,7 +39,7 @@ mod test {
 
         {
             // fix this line to make this test pass
-            b = a();
+            b = futures::executor::block_on(a);
         }
 
         assert_eq!(b, "Hello World!");
