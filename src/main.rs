@@ -1,4 +1,5 @@
 #![deny(warnings)]
+
 fn main() {
     let i = 0i64;
     change_value();
